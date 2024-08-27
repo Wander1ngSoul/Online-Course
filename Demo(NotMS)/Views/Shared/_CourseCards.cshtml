@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CourseDto>
+
+@if (Model != null && Model.Any())
+{
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@course.Img" class="card-img-top" alt="Изображение курса">
+                <div class="card-body">
+                    <h5 class="card-title">@course.NameCourse</h5>
+                    @* <p class="card-text">ID курса: @course.CourseId</p> *@
+                    <p class="card-text">Продолжительность: @course.Hours мес.</p>
+                    <p class="card-text">Стоимость: @course.Cost</p>
+                    <p class="card-text">@course.inforamtion</p>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-action="@(course.IsInCart == true ? "RemoveFromCart" : "AddToCart")" asp-route-courseId="@course.CourseId">
+                            <button type="submit" class="btn @(course.IsInCart == true ? "btn-danger" : "btn-primary")">
+                                @if (course.IsInCart == true)
+                                {
+                                    <span>Удалить из корзины</span>
+                                }
+                                else
+                                {
+                                    <span>Добавить в корзину</span>
+                                }
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Курсы по заданным запросам не найдены.
+    </div>
+}

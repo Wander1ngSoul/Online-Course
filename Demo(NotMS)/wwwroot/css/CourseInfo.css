@@ -1,0 +1,53 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-image: url('../img/1612232687_106-p-fioletovii-krutoi-fon-130.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+h3 {
+    margin-bottom: 20px; 
+}
+
+#TitleTable {
+    text-align: center;
+}
+
+#MainTable {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 5%;
+}
+
+    #MainTable th, #MainTable td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center; 
+    }
+
+    #MainTable th {
+        background-color: #f2f2f2;
+    }
+
+#returnbutton {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid transparent; 
+    color: black;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out; 
+}
+
+#returnbutton:hover {
+    border-color: green; 
+    background-color: lightgreen;
+}
+
+#a1 {
+    text-decoration: none;
+    color:black;
+}

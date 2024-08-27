@@ -1,0 +1,150 @@
+﻿﻿
+@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Курсы E-Learning Excellence";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+  @*   <script req src="js/script.js"></script> *@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="css/MainWindow.css" />
+    <title>E-Learning Excellence</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
+@*     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script> *@
+    @* <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script> *@
+    
+</head>
+<body>
+    
+    <style>
+        body {
+    background-image: url('../img/1612232687_106-p-fioletovii-krutoi-fon-130.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    }
+
+    #LogIn {
+    position: fixed;
+    top: 30px; 
+    right: 150px;
+    z-index: 9999;
+    }
+
+    #LogIn:hover {
+        color: #333;
+        border-bottom: none; 
+    }
+    #a1
+    {
+        color: black;
+    }
+
+    #a1:hover
+    {
+        text-decoration: none;
+    }
+    </style>
+   
+
+   
+    <div class="container text-center">
+        <div class="row" id="Header">
+
+            <div class="col">
+                <h4 id="courseInfo"><a href="@Url.Action("CourseInfoWindow", "Home")">Список курсов</a></h4>
+                @*  <h4 id="LogIn"><a id="a1" href="@Url.Action("LogIn", "Home")">Зарегистрироваться</a></h4> *@
+            </div>
+
+
+
+            <div class="col" id="blockTitle">
+                <h2 id="TitleHeader">E-Learning Excellence</h2>
+            </div>
+            <div class="col" id="blockIcon">
+                <img src="/img/vkontakte.png" id="Icon" height="30" width="30">
+                <img src="img/instagram.png" id="Icon" height="30" width="30">
+                <img src="img/telegram.png" id="Icon" height="30" width="30">
+                <img src="img/whatsapp.png" id="Icon" height="30" width="30">
+            </div>
+        </div>
+        <div class="container text-center" id="bodytextLeft">
+            <div class="row">
+                <div class="col" id="BodyLeftText">
+                    <h2 id="lefttext1">Мечты о знаниях</h2>
+                    <h2 id="lefttext2">приводят на <h2 id="BodyTitle">E-learning Excellence</h2></h2>
+                </div>
+                <div class="col" id="BodyrigthtIcon">
+                    <img src="img/LogoELearningExcellence.png" width="300" height="300" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center" id="text">
+        <div class="row">
+            <div class="col">
+                <h2 id="quaction">Почему стоит приобрести курс Excellence</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container text-center" id="text">
+        <div class="row">
+            <div class="col" id="pack1">
+                <img src="img/Pack1.jpg" id="PackIcon" height="180" width="300">
+                <h3 class="TextBlockIcon">Актуальные технологии</h3>
+            </div>
+            <div class="col" id="pack2">
+                <img src="img/Pack2.png" id="PackIcon" height="180" width="300">
+                <h3 class="TextBlockIcon">Дружная команда</h3>
+            </div>
+            <div class="col" id="pack3">
+                <img src="img/Pack3.jpg" id="PackIcon" height="180" width="300">
+                <h3 class="TextBlockIcon">Расписание под вас</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footerblock">
+        <div class="container text-center" id="dopInfo">
+            <div class="row">
+                <div class="col">
+                    <h2 id="FooterHeadFirst">Контакты</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">Электронная почта: surnameuser@mail.ru</li>
+                        <li class="list-group-item">Телефон: +7 999 888 77 55</li>
+                        <li class="list-group-item">Менеджер: +7 900 218 53 42</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2 id="FooterHeadFirst">О Excellence</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">Сообщество E-learning Excellence</li>
+                        <li class="list-group-item">Корпоративным клиентам</li>
+                        <li class="list-group-item">О платформе</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2 id="FooterHeadFirst">Сотрудничество</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">Скидка для друзей</li>
+                        <li class="list-group-item">Партнерская программа</li>
+                        <li class="list-group-item">Социальные проекты</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿﻿
+@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Курсы E-Learning Excellence";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Курсы E-Learning Excellence</title>
+    <link rel="stylesheet" href="~/css/CourseInfo.css" />
+</head>
+<body>
+    <style>
+        body {
+    background-image: url('../img/1612232687_106-p-fioletovii-krutoi-fon-130.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+    </style>
+    <H3 id="returnbutton"><a href="@Url.Action("Index", "Home")">Вернуться</a></H3>
+    <h3 id="TitleTable">E-Learning Excellence</h3>
+    <table id="MainTable">
+        <thead>
+            <tr>
+               @*  <th>ID курса</th> *@
+                <th>Наименование</th>
+                <th>Продолжительность</th>
+                <th>Стоимость</th>
+                <th>Информация</th>               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                  @*   <td>@course.CourseId</td> *@
+                    <td>@course.NameCourse</td>
+                    <td>@course.Hours</td>
+                    <td>@course.Cost</td>
+                    <td>@course.inforamtion</td>
+                    <td>
+                                <form asp-action="RemoveFromCart" asp-route-courseId="@course.CourseId">
+                                    <button type="submit">Удалить из корзины</button>
+                                </form>
+                            
+                        
+                </tr>
+            }
+            <tr>
+                <td colspan="3">Итого</td>
+                <td colspan="2">@(Model.Sum(x=>x.Cost))</td>    
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

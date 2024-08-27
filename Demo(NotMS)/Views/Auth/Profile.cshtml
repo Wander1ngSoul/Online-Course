@@ -1,0 +1,143 @@
+﻿@model User 
+@{
+    ViewData["Title"] = "Профиль пользователя";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/LogIn.css" />
+    <script>
+        function enableEditing() {
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+               // if (inputs[i].id !== "email") { // исключаем поле email из редактируемых
+                    inputs[i].removeAttribute("readonly");
+                    inputs[i].removeAttribute("disabled");
+                //}
+            }
+            var select = document.getElementsByTagName("select");
+            for (var i = 0; i < select.length; i++) {
+                select[i].removeAttribute("readonly");
+                select[i].removeAttribute("disabled");
+            }
+        }
+        function toggleEdit() {
+            var editButton = document.getElementById("editButton");
+            var saveButton = document.getElementById("saveButton");
+
+            if (editButton.style.display === "none") {              
+                editButton.style.display = "grid";
+                saveButton.style.display = "none";
+                // enableInputs(false);
+            } else {
+                enableEditing();
+                editButton.style.display = "none";
+                saveButton.style.display = "grid";
+                // enableInputs(true);
+            }
+        }
+
+        function enableInputs(enable) {
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].readOnly = !enable;
+            }
+        }
+       
+        function deleteProfile() {
+            var email = document.getElementById("email").value;
+            var confirmDelete = confirm("Вы уверены, что хотите удалить профиль?");
+            if (confirmDelete) {
+                fetch('/Auth/Delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Успешное удаление профиля, перенаправляем на другую страницу, например, на главную
+                            window.location.href = '/';
+                        } else {
+                            // Обработка ошибок удаления, если нужно
+                            console.error('Ошибка удаления профиля');
+                        }
+                    })
+                    .catch(error => {
+                        // Обработка ошибок сети или других проблем
+                        console.error('Ошибка удаления профиля:', error);
+                    });
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2 style="text-align:center">Профиль пользователя</h2>
+
+    <form style="text-align:left;width:unset" method="post" id="profileForm">
+        <div>
+            <label for="firstName">Имя:</label>
+            <input type="text" id="firstName" name="FirstName" value="@Model?.FirstName" readonly disabled />
+        </div>
+        <div>
+            <label for="lastName">Фамилия:</label>
+            <input type="text" id="lastName" name="LastName" value="@Model?.LastName" readonly disabled />
+        </div>
+        @if (@Model?.Role == "Преподаватель")
+        {
+            <div>
+                <label for="stage">Стаж:</label>
+                <input type="text" id="stage" name="Stage" value="@Model?.Stage" readonly disabled />
+            </div>
+        }
+        <div>
+            <label for="phone">Номер телефона:</label>
+            <input type="text" id="phone" name="Phone" value="@Model?.Phone" readonly disabled />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="Email" value="@Model?.Email" readonly disabled />
+        </div>       
+        <div>
+        <label>Пароль</label>
+            <input type="password" name="Password" value="@Model?.Password" />
+        </div>
+        <div>
+            <label>Подтвержден email:</label>
+            <span>@(Model?.ConfirmEmail == true ? true : false)</span>
+        </div>
+        <div>
+            <label>Роль:</label>
+            <select name="Role" id="roleSelect" readonly disabled>
+                @{
+                    if (Model?.Role == "Студент")
+                    {
+                        <option value="Студент" selected>Студент</option>
+                        <option value="Преподаватель">Преподаватель</option>
+                    }
+                    else if (Model?.Role == "Преподаватель")
+                    {
+                        <option value="Студент">Студент</option>
+                        <option value="Преподаватель" selected>Преподаватель</option>
+                    }
+                    else
+                    {
+                        <option value="" selected>Выберите роль</option>
+                        <option value="Студент">Студент</option>
+                        <option value="Преподаватель">Преподаватель</option>
+                    }
+                }
+            </select>
+
+
+        </div>
+@*         <button type="button" onclick="enableEditing()">Редактировать</button>
+        <button type="submit">Сохранить</button> *@
+        <button id="editButton" type="button" onclick="toggleEdit()">Редактировать</button>
+        <button id="saveButton" type="submit" style="display: none;">Сохранить</button>        
+        <button type="button" class="btn-danger" onclick="deleteProfile()">Удалить профиль</button>
+    </form>
+</body>
+</html>

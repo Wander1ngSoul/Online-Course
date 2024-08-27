@@ -1,0 +1,64 @@
+﻿@* @model string
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "_Layout";
+} *@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/LogIn.css" />
+</head>
+<body>
+    @{
+        var errorMessage = TempData["ErrorMessage"] as string;
+    }
+    <h2 style="text-align:center">Вход</h2>
+    <form method="post" action="~/Auth/Register">
+        <label>Имя</label>
+        <input type="text" name="FirstName" required />
+        <label>Фамилия</label>
+        <input type="text" name="LastName" required />
+        <spanid id="stageField">
+        <label>Стаж</label>
+            <input type="text" name="Stage" pattern="[0-9\,]*" />
+        </spanid>
+        <label>Номер телефона</label>
+        <input type="tel" name="Phone" pattern="[0-9]{10}" required placeholder="92744683890 " />
+        <label>Email</label>
+        <input type="email" name="Email" required />
+        <label>Пароль</label>
+        <input type="password" name="Password" required />
+        <label>Роль</label>
+        <select name="Role" id="roleSelect">
+            <option value="Студент">Студент</option>
+            <option value="Преподаватель">Преподаватель</option>
+        </select>
+        <button type="submit">Отправить</button>
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert" role="alert" style="color:red">
+                @errorMessage
+            </div>
+        }
+    </form>   
+    <script>
+        // Получаем ссылки на элементы формы
+        var roleSelect = document.getElementById('roleSelect');
+        var stageField = document.getElementById('stageField');
+
+        // Добавляем обработчик события изменения значения поля "Роль"
+        roleSelect.addEventListener('change', function () {
+            // Если выбрана роль "Студент"
+            if (roleSelect.value === 'Студент') {
+                // Скрываем поле "Стаж"
+                stageField.style.display = 'none';
+            } else {
+                // Иначе, отображаем поле "Стаж"
+                stageField.style.display = 'block';
+            }
+        });
+        // Вызываем обработчик события изменения значения поля "Роль" при загрузке страницы
+        roleSelect.dispatchEvent(new Event('change'));
+    </script>
+</body>
+</html>

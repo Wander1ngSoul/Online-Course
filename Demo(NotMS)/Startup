@@ -1,0 +1,65 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using IdentityServer4;
+
+using IdentityServer4.Models;
+using _4232_pp.Entity.Models;
+
+
+namespace _4232_pp
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddOptions();
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<CourseContext>(options => options.UseSqlServer(connection));
+            services.AddMvc();
+
+
+
+
+        }
+        public void Configure(WebApplication app, IWebHostEnvironment env, IServiceProvider serviceProvider)
+        {
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+            app.UseRouting();
+            app.UseIdentityServer();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            /*app.MapGet("/", () => { });*/
+
+            var dbContext = serviceProvider.GetService<CourseContext>();
+            DataBank.Initialize(dbContext);
+        }
+    }
+}

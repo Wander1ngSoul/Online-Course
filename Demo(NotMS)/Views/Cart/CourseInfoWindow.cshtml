@@ -1,0 +1,136 @@
+﻿@model IEnumerable<CourseDto>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Курсы E-Learning Excellence</title>
+    <link rel="stylesheet" href="~/css/CourseInfo.css" />
+</head>
+<body>
+    <style>
+        body {
+            background-image: url('../img/1612232687_106-p-fioletovii-krutoi-fon-130.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .card {
+            /*width: 18rem; /* Ширина карточки */
+        }
+
+        .card-img-top {
+            width: 100%; /* Ширина изображения в карточке */
+            height: 200px; /* Высота изображения в карточке */
+            object-fit: cover; /* Заполнение изображения в размер блока */
+        }
+
+        #searchInput {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        #filterDropdowns {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <H3 id="returnbutton"><a href="@Url.Action("Index", "Home")">Вернуться</a></H3>
+    <h3 id="TitleTable">E-Learning Excellence</h3>
+    @* <form id="filterForm" method="get" action="/Cart/CourseInfoWindow"> *@
+        <div style="display:flex;">
+            <div class="form-group">
+                <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Поиск курсов...">
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" id="hoursFilter" name="hoursFilter">
+                    <option value="">Продолжительность</option>
+                    <option value="3">Менее 3 месяцев</option>
+                    <option value="6">Менее 6 месяцев</option>
+                    <option value="9">Менее 9 месяцев</option>
+                    <option value="12">Менее 12 месяцев</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" id="costFilter" name="costFilter">
+                    <option value="">Стоимость</option>
+                    <option value="5000">До 5000</option>
+                    <option value="10000">До 10000</option>
+                    <option value="15000">До 15000</option>
+                    <option value="20000">До 20000</option>
+                </select>
+            </div>
+        <button class="btn btn-primary" style="height:38px;" id="filterButton">Применить фильтры</button>
+        </div>
+    @* </form> *@
+    <div class="container">
+        <div class="row" id="courseCards">
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Filter/Search", // замените Controller и Action на ваши значения
+                        type: "GET",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.nameCourse, value: item.nameCourse }; // замените Name и Id на свои поля объекта
+                            }));
+                        }
+                    });
+                },
+                minLength: 2 // минимальное количество символов перед тем как начнется поиск
+            });
+
+            loadCourseCards();
+
+            // Функция для загрузки частичного представления
+            function loadCourseCards() {
+                $.ajax({
+                    url: '@Url.Action("GetCourseCards", "Cart")', 
+                    type: 'GET',
+                    success: function (response) {
+                        $('#courseCards').html(response);
+                    }
+                });
+            }
+
+            // Обработчик для фильтров
+            $('#filterButton').on('click', function () {
+                filterCourses();
+            });
+
+            // Функция для фильтрации курсов
+            function filterCourses() {
+                var searchInput = $('#searchInput').val().toLowerCase();
+                var hoursFilter = $('#hoursFilter').val();
+                var costFilter = $('#costFilter').val();
+
+                $.ajax({
+                    url: '@Url.Action("GetCourseCards", "Cart")',
+                    data: {
+                        searchInput: searchInput,
+                        hoursFilter: hoursFilter,
+                        costFilter: costFilter
+                    },
+                    success: function (response) {
+                        $('#courseCards').html(response);
+                    }
+                });
+            }            
+        });
+    </script>
+</body>
+</html>

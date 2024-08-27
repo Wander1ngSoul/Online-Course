@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="~/css/LogIn.css" />
+</head>
+<body>
+    @{
+        var errorMessage = TempData["ErrorMessage"] as string;
+    }
+    <h2 style="text-align:center">Вход</h2>
+    <form method='post'>
+        <p>
+            <label>Email</label><br />
+            <input name='email' />
+        </p>
+        <p>
+            <label>Password</label><br />
+            <input type='password' name='password' />
+        </p>
+        <input type='submit' value='Login' />
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert" role="alert" style="color:red">
+                @errorMessage
+            </div>
+        }
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+﻿
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #d9d5d4;
+    color: #d9d5d4;
+}
+
+#TitleHeader {
+    transition: transform 0.7s ease;
+}
+
+    #TitleHeader:hover {
+        transform: scale(1.2);
+    }
+
+#courseInfo {
+    text-decoration: none;
+    color: black;
+}
+
+#Header {
+    margin-top: 3%;
+}
+
+#Icon {
+    margin-right: 3%;
+    transition: transform 0.3s ease;
+}
+
+#blockIcon {
+    margin-left: 5%;
+}
+
+#Icon:hover {
+    transform: scale(1.2);
+}
+
+
+
+#TitleHeader {
+    font-family: 'Times New Roman';
+    text-align: center;
+}
+
+#blockTitle {
+    padding-left: 10%;
+}
+
+
+#bodytextLeft {
+    margin-top: 10%;
+}
+
+
+#lefttext1 {
+    text-align: left;
+    font-size: 50px;
+}
+
+#lefttext2 {
+    text-align: left;
+    font-size: 50px;
+}
+
+#courseInfo a {
+    text-decoration: none;
+    color: black;
+}
+
+
+#courseInfo {
+    text-align: center;
+    margin-left: -10%;
+    border-radius: 20px;
+    font-family: 'Times New Roman';
+    cursor: pointer;
+    width: 200px;
+    transition: background-color 0.5s ease;
+}
+
+    #courseInfo:hover {
+        text-align: center;
+        border-radius: 20px;
+        width: 200px;
+        background-color: #5ff754;
+        opacity: 0.85;
+    }
+
+#BodyLeftText {
+    font-family: cursive;
+}
+
+#BodyTitle {
+    margin-left: 20%;
+    margin-top: 10%;
+    font-size: 42px;
+    color: #3dd932;
+    transition: transform 0.3s ease;
+}
+
+    #BodyTitle:hover {
+        transform: scale(1.2);
+    }
+
+#BodyrigthtIcon {
+    border-radius: 20px;
+    transition: transform 1s ease;
+}
+
+    #BodyrigthtIcon:hover {
+        transform: scale(1.1);
+    }
+
+#footerblock {
+    background-color: #4d4d4d;
+    margin-top: 10%;
+    height: 500px;
+}
+
+.list-group-item {
+    margin-top: 2%;
+    text-align: left;
+}
+
+#FooterHeadFirst {
+    color: white;
+}
+
+#dopInfo {
+    padding-top: 5%;
+    font-size: 13px;
+}
+
+#quaction {
+    font-family: cursive;
+    font-weight: bold;
+}
+
+#group {
+    margin-left: 4%;
+}
+
+.list-group-item {
+    transition: background-color 0.5s ease;
+}
+
+    .list-group-item:hover {
+        background-color: #5ff754;
+    }
+
+#text {
+    margin-top: 5%;
+}
+
+#PackIcon {
+    border-radius: 10px;
+}
+
+#pack1, #pack2, #pack3 {
+    transition: transform 0.3s ease;
+}
+
+    #pack1:hover, #pack2:hover, #pack3:hover {
+        transform: scale(1.1);
+    }
+
+
+.col {
+    opacity: 0;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Применяем анимацию к каждому элементу с разной задержкой */
+.col:nth-child(1) {
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.col:nth-child(2) {
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.col:nth-child(3) {
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.TextBlockIcon {
+    margin-top: 1%;
+    font-size: 20px;
+    font-family: cursive;
+    margin-top: 2%;
+}
+
+
+
+

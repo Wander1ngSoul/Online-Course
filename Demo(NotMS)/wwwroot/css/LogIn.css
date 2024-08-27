@@ -1,0 +1,88 @@
+﻿body {
+    background-image: url('../img/1612232687_106-p-fioletovii-krutoi-fon-130.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+form {
+    background:white;
+    width: 30%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid black;
+    font-size: 20px; 
+    text-align: center; 
+    /*position: absolute; */
+    top: 50%; 
+    left: 50%; 
+    /*transform: translate(-50%, -50%); */
+}
+    form label {
+        display: inline-block;
+        text-align: left;
+        vertical-align: top;
+        width: 20%;
+        margin-right: 5%; /* добавляем отступ справа */
+    }
+
+    form input {
+        width: 70%;
+        padding: 5px;
+        margin-bottom: 10px; /* добавляем пространство между input */
+    }
+
+    form button {
+        width: 70%;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #337ab7;
+        color: white;
+        border: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        form button:hover {
+            background-color: #235a92;
+        }
+
+    form input:hover {
+        border: 2px solid #337ab7;
+    }
+    form label {
+        display: inline-block;
+        text-align: left;
+        vertical-align: top;
+        width: 20%;
+        margin-right: 5%; /* добавляем отступ справа */
+    }
+
+    form input {
+        width: 70%;
+        padding: 5px;
+        margin-bottom: 10px; /* добавляем пространство между input */
+    }
+
+    form button {
+        width: 70%;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #337ab7;
+        color: white;
+        border: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        form button:hover {
+            background-color: #235a92;
+        }
+
+    form input:hover {
+        border: 2px solid #337ab7;
+    }
